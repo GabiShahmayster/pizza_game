@@ -1,3 +1,5 @@
+import os
+
 import pygame
 from pygame.locals import QUIT, KEYDOWN, KEYUP, K_ESCAPE, K_LEFT, K_RIGHT, K_DOWN, K_UP, K_q
 # from cv.ColorTuple import ColorTuple as ColorBGR
@@ -191,21 +193,21 @@ if __name__ == "__main__":
     screen = pygame.display.set_mode((screen_width, screen_height))
 
     font = pygame.font.SysFont('David.ttf', 32)
-
+    cwd: str = os.getcwd()
     pygame.mixer.init()
-    pygame.mixer.music.load('/home/gabi/Desktop/game/hasidim.ogg')
+    pygame.mixer.music.load(os.path.join(cwd, 'hasidim.ogg'))
     pygame.mixer.music.play(-1)
-    eat_pizza_sound = pygame.mixer.Sound('/home/gabi/Desktop/game/eat_cake.wav')
-    eat_tuna_sound = pygame.mixer.Sound('/home/gabi/Desktop/game/eat_tuna.wav')
-    pizza_img = pygame.image.load("/home/gabi/Desktop/game/cake.png")
+    eat_pizza_sound = pygame.mixer.Sound(os.path.join(cwd, 'eat_cake.wav'))
+    eat_tuna_sound = pygame.mixer.Sound(os.path.join(cwd, 'eat_tuna.wav'))
+    pizza_img = pygame.image.load(os.path.join(cwd, 'cake.png'))
     pizza_counter_img = pizza_img.get_rect(top=0,left=0)
-    tuna_img = pygame.image.load("/home/gabi/Desktop/game/tuna.png")
+    tuna_img = pygame.image.load(os.path.join(cwd, 'tuna.png'))
     tuna_counter_img = tuna_img.get_rect(top=50, left=0)
     list_of_falling_objects: List[PyGameRectangle] = list()
     # for falling_object_left in range(pizza_img.get_width(), screen_width - pizza_img.get_width(), 100):
 
 
-    girl_img = pygame.image.load("/home/gabi/Desktop/game/romi_face.png")
+    girl_img = pygame.image.load(os.path.join(cwd, 'romi_face.png'))
     girl_rect = PyGameRectangle(left=-1, top=-1, width=-1, height=-1,
                                 rectangle=girl_img.get_rect(top=screen_height - girl_img.get_height(),
                                                             left=0),
